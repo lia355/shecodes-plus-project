@@ -14,7 +14,67 @@
     <title>Weather App</title>
   </head>
   <body>
-    <h1>Weather App</h1>
+    <div class="container">
+      <div class="title">Weather Forecast</div>
+      <form>
+        <input type="text" placeholder="Enter a city" />
+        <input type="submit" value="Search" />
+      </form>
+      <h1>Ljubljana SL</h1>
+      <ul>
+        <li>Monday 16:00</li>
+        <li>Clear</li>
+      </ul>
+      <div class="row">
+        <div class="col">
+          <img
+            src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+            alt="clear"
+          />
+          <span>20 °C|°F</span>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <ul>
+                <li class="value">30 °C</li>
+                <li class="descriptor">High</li>
+                <li class="value">20 °C</li>
+                <li class="descritor">Low</li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul>
+                <li class="value">5 m/s</li>
+                <li class="descriptor">Wind</li>
+                <li class="value">45%</li>
+                <li class="descritor">Humidity</li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul>
+                <li class="value">05:47</li>
+                <li class="descriptor">Sunrise</li>
+                <li class="value">20:12</li>
+                <li class="descritor">Sunset</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <small
+        >This project was coded by Lia and is
+        <a
+          href="https://github.com/lia355/shecodes-plus-project"
+          target="_blank"
+          >open-sourced on GitHub</a
+        >
+        and
+        <a href="https://stunning-gecko-a68131.netlify.app/" target="_blank"
+          >hosted on Netlify</a
+        >.</small
+      >
+    </div>
     <script src="src/app.js"></script>
   </body>
 </html>
