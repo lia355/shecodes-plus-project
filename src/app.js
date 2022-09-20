@@ -53,14 +53,20 @@ function showWeather(response) {
   let descriptionElement = document.querySelector("#current-description");
   descriptionElement.innerHTML = response.data.weather[0].description;
 
+  celsiusTemp = response.data.main.temp;
+
   let tempElement = document.querySelector("#temperature-value");
-  tempElement.innerHTML = Math.round(response.data.main.temp);
+  tempElement.innerHTML = Math.round(celsiusTemp);
+
+  highTemp = response.data.main.temp_max;
 
   let highElement = document.querySelector("#high-value");
-  highElement.innerHTML = `${Math.round(response.data.main.temp_max)} °`;
+  highElement.innerHTML = `${Math.round(highTemp)} °`;
+
+  lowTemp = response.data.main.temp_min;
 
   let lowElement = document.querySelector("#low-value");
-  lowElement.innerHTML = `${Math.round(response.data.main.temp_min)} °`;
+  lowElement.innerHTML = `${Math.round(lowTemp)} °`;
 
   let windElement = document.querySelector("#wind-value");
   windElement.innerHTML = `${Math.round(response.data.wind.speed)} m/s`;
@@ -90,22 +96,43 @@ function handleSubmit(event) {
   let searchInput = document.querySelector("#search-input");
   searchCity(searchInput.value);
 }
-function showCelsius() {
-  let tempCelsius = document.querySelector("#temperature-value");
-  tempCelsius.innerHTML = `19`;
+function showCelsius(event) {
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  event.preventDefault();
+  let tempElement = document.querySelector("#temperature-value");
+  tempElement.innerHTML = Math.round(celsiusTemp);
+  let highElement = document.querySelector("#high-value");
+  highElement.innerHTML = `${Math.round(highTemp)} °`;
+  let lowElement = document.querySelector("#low-value");
+  lowElement.innerHTML = `${Math.round(lowTemp)} °`;
 }
-function showFarenheit() {
-  let tempFarenheit = document.querySelector("#temperature-value");
-  tempFarenheit.innerHTML = `66`;
+function showFahrenheit(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let tempFahrenheit = (celsiusTemp * 9) / 5 + 32;
+  let tempElement = document.querySelector("#temperature-value");
+  tempElement.innerHTML = Math.round(tempFahrenheit);
+  let highFahrenheit = (highTemp * 9) / 5 + 32;
+  let highElement = document.querySelector("#high-value");
+  highElement.innerHTML = `${Math.round(highFahrenheit)} °`;
+  let lowFahrenheit = (lowTemp * 9) / 5 + 32;
+  let lowElement = document.querySelector("#low-value");
+  lowElement.innerHTML = `${Math.round(lowFahrenheit)} °`;
 }
 
-searchCity("Ankaran");
+let celsiusTemp = null;
+let highTemp = null;
+let lowTemp = null;
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", showCelsius);
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", showFahrenheit);
 
-let farenheit = document.querySelector("#farenheit");
-farenheit.addEventListener("click", showFarenheit);
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", showCelsius);
+
+searchCity("Ankaran");

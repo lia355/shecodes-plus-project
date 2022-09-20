@@ -107,6 +107,11 @@ li {
   text-decoration: none;
 }
 
+.weather-temperature .active {
+  color: black;
+  cursor: default;
+}
+
 .current-values {
   text-align: center;
   align-self: center;
