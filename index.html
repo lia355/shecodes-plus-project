@@ -20,6 +20,7 @@
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
   </head>
@@ -27,58 +28,63 @@
     <div class="container">
       <div class="wrapper">
         <div class="title">Weather App</div>
-        <form>
+        <form id="search-form">
           <input type="text" placeholder="Enter a city" id="search-input" />
           <input type="submit" value="Search" id="search-button" />
         </form>
-        <h1>Ljubljana, SL</h1>
+        <h1>Ankaran</h1>
         <ul>
-          <li>Monday 16:00</li>
-          <li>Clear</li>
+          <li id="current-description">Clear sky</li>
         </ul>
         <div class="row">
           <div class="col-6">
             <div class="d-flex weather-temperature">
               <img
-                src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+                src="https://openweathermap.org/img/wn/01d@2x.png"
                 alt="clear"
+                id="weather-icon"
               />
-              <span class="temperature">20</span>
-              <span class="units"> °C|°F</span>
+              <span id="temperature-value">20</span>
+              <span class="units">
+                <a href="" id="celsius">°C</a>|<a href="" id="farenheit"
+                  >°F</a
+                ></span
+              >
             </div>
           </div>
           <div class="col-6 current-values">
             <div class="row">
               <div class="col">
                 <ul>
-                  <li class="value">30 °C</li>
+                  <li class="value" id="high-value">30 °</li>
                   <li class="descriptor">High</li>
                   <br />
-                  <li class="value">20 °C</li>
-                  <li class="descritor">Low</li>
+                  <li class="value" id="low-value">20 °</li>
+                  <li class="descriptor">Low</li>
                 </ul>
               </div>
               <div class="col">
                 <ul>
-                  <li class="value">5 m/s</li>
+                  <li class="value" id="wind-value">5 m/s</li>
                   <li class="descriptor">Wind</li>
                   <br />
-                  <li class="value">45%</li>
-                  <li class="descritor">Humidity</li>
+                  <li class="value" id="humidity-value">45%</li>
+                  <li class="descriptor">Humidity</li>
                 </ul>
               </div>
               <div class="col">
                 <ul>
-                  <li class="value">05:47</li>
+                  <li class="value" id="sunrise-value">05:47</li>
                   <li class="descriptor">Sunrise</li>
                   <br />
-                  <li class="value">20:12</li>
-                  <li class="descritor">Sunset</li>
+                  <li class="value" id="sunset-value">20:12</li>
+                  <li class="descriptor">Sunset</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
+        <small id="date-time">Last updated on Saturday at 16:00</small>
       </div>
       <small
         >This project was coded by Lia and is
