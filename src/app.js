@@ -71,23 +71,25 @@ function showWeather(response) {
   let sunriseElement = document.querySelector("#sunrise-value");
   sunriseElement.innerHTML = formatSunrise(response.data.sys.sunrise * 1000);
 
-  let sunsetElement = document.querySelector("#sunrise-value");
+  let sunsetElement = document.querySelector("#sunset-value");
   sunsetElement.innerHTML = formatSunset(response.data.sys.sunset * 1000);
 
   let dateElement = document.querySelector("#date-time");
   dateElement.innerHTML = FormatDate(response.data.dt * 1000);
 }
 
-function searchCity(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-input");
+function searchCity(city) {
   let apiKey = `3586db65420f91acc50aa25a5656c411`;
-  let city = `${searchInput.value}`;
   let unit = `metric`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(showWeather);
 }
 
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-input");
+  searchCity(searchInput.value);
+}
 function showCelsius() {
   let tempCelsius = document.querySelector("#temperature-value");
   tempCelsius.innerHTML = `19`;
@@ -97,8 +99,10 @@ function showFarenheit() {
   tempFarenheit.innerHTML = `66`;
 }
 
+searchCity("Ankaran");
+
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", searchCity);
+searchForm.addEventListener("submit", handleSubmit);
 
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", showCelsius);
