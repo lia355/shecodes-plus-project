@@ -153,14 +153,11 @@ li.descriptor {
 }
 
 .daily-card {
-  border-radius: 0;
   padding: 0;
+  border-radius: 0;
   background-color: transparent;
   border: none;
   border-left: 1px solid rgba(145, 140, 140, 0.7);
-}
-.card-left {
-  border: none;
 }
 
 .forecast-day {

@@ -23,6 +23,35 @@ function FormatDate(timestamp) {
   return `Last updated on ${day} at ${hours}:${minutes}`;
 }
 
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row g-0 text-center">`;
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col">
+       <div class="card daily-card">
+          <div class="card-body">
+            <div class="forecast-day">${day}</div>
+            <img
+              src="https://openweathermap.org/img/wn/01n@2x.png"
+              alt="description"               width=42"
+            />
+            <div class="forecast-temperature"> <span class="high-temp">20° <span class="low-temp">10°</span>
+          </div>
+         </div>
+       </div>
+      </div>       
+    `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function formatSunrise(timestamp) {
   let date = new Date(timestamp);
   let hours = addZero(date.getHours());
@@ -136,3 +165,4 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", showCelsius);
 
 searchCity("Ankaran");
+showForecast();
