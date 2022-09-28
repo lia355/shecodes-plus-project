@@ -153,43 +153,8 @@ function handleSubmit(event) {
   let searchInput = document.querySelector("#search-input");
   searchCity(searchInput.value);
 }
-function showCelsius(event) {
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  event.preventDefault();
-  let tempElement = document.querySelector("#temperature-value");
-  tempElement.innerHTML = Math.round(celsiusTemp);
-  let highElement = document.querySelector("#high-value");
-  highElement.innerHTML = `${Math.round(highTemp)} °`;
-  let lowElement = document.querySelector("#low-value");
-  lowElement.innerHTML = `${Math.round(lowTemp)} °`;
-}
-function showFahrenheit(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let tempFahrenheit = (celsiusTemp * 9) / 5 + 32;
-  let tempElement = document.querySelector("#temperature-value");
-  tempElement.innerHTML = Math.round(tempFahrenheit);
-  let highFahrenheit = (highTemp * 9) / 5 + 32;
-  let highElement = document.querySelector("#high-value");
-  highElement.innerHTML = `${Math.round(highFahrenheit)} °`;
-  let lowFahrenheit = (lowTemp * 9) / 5 + 32;
-  let lowElement = document.querySelector("#low-value");
-  lowElement.innerHTML = `${Math.round(lowFahrenheit)} °`;
-}
-
-let celsiusTemp = null;
-let highTemp = null;
-let lowTemp = null;
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
-
-let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", showFahrenheit);
-
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", showCelsius);
 
 searchCity(`Ankaran`);
