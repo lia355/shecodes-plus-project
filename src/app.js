@@ -23,7 +23,8 @@ function FormatDate(timestamp) {
   return `Last updated on ${day} at ${hours}:${minutes}`;
 }
 
-function showForecast() {
+function showForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row g-0 text-center">`;
@@ -66,6 +67,14 @@ function formatSunset(timestamp) {
   let minutes = addZero(date.getMinutes());
 
   return `${hours}:${minutes}`;
+}
+
+function getForecast(coordinates) {
+  let apiKey = `f3887e262c88d1158f7e2ef4998e234c`;
+  let unit = `metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`;
+
+  axios.get(apiUrl).then(showForecast);
 }
 
 function showWeather(response) {
@@ -111,6 +120,8 @@ function showWeather(response) {
 
   let dateElement = document.querySelector("#date-time");
   dateElement.innerHTML = FormatDate(response.data.dt * 1000);
+
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -164,5 +175,4 @@ fahrenheitLink.addEventListener("click", showFahrenheit);
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", showCelsius);
 
-searchCity("Ankaran");
-showForecast();
+searchCity(`Ankaran`);
